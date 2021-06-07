@@ -1,0 +1,2 @@
+# PPT_Transtions
+在OpenGL里用纯shader实现PPT的切换特效
