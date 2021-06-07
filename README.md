@@ -2,43 +2,7 @@
 在OpenGL里用纯shader实现PPT的切换特效
 
 
-一、 先看一个最简单的例子（淡入淡出），直接调用GLSL的mix函数即可，直接给出代码：
-顶点着色器代码：
-#shader vertex
-
-#version 330 core
-
-layout (location = 0) in vec3 aPos;
-layout(location = 1) in vec2 aTexCoord;
-out vec2 texCoord;
-void main()
-{
-	texCoord = aTexCoord;
-    gl_Position = vec4(aPos, 1.0);
-};
-片元着色器代码：
-#shader fragment
-
-#version 330 core
-
-out vec4 FragColor;
-in vec2 texCoord;
-uniform sampler2D u_ourTexture1;
-uniform sampler2D u_ourTexture2;
-uniform float u_ratio;
-void main()
-{
-    vec4 texColor1 = texture(u_ourTexture1, texCoord);
-    vec4 texColor2 = texture(u_ourTexture2, texCoord);
-    FragColor = mix(texColor1, texColor2,u_ratio);
-};
-其中片元着色器用到的uniform输入如下（会在以下代码中省略）：
-uniform sampler2D u_ourTexture1; // 第一张纹理
-uniform sampler2D u_ourTexture2; // 第二张纹理
-uniform float u_ratio; // 假定的时间，从0~1
-uniform float u_width; // 窗口的宽度，设为1280
-uniform float u_height; // 窗口的高度，设为720
-由于后续特效用到的顶点着色器和片元着色器的uniform输入均一致，简便起见故省略
+一、 先看一个最简单的例子（淡入淡出），直接调用GLSL的mix函数即可
 
 二、推入 Push
 现象：一张图片从右往左把另一张图片推出屏幕
