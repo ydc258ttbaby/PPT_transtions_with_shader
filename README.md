@@ -1,6 +1,6 @@
 # PPT_Transtions
 在OpenGL里用纯shader实现PPT的切换特效
-
+直接点击 OpenGL.sln 用Visual Studio2019 打开工程生成即可
 
 ## 一、 淡入淡出 Fade
 直接调用GLSL的mix函数即可
