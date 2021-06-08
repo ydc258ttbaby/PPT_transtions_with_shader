@@ -69,7 +69,7 @@
     <None Include="res\shaders\transtions\Blinds.shader" />
     <None Include="res\shaders\transtions\CheckBoard.shader" />
     <None Include="res\shaders\transtions\Clock.shader" />
-    <None Include="res\shaders\transtions\Comb.shader" />
+    <None Include="res\shaders\transtions\HoneyComb.shader" />
     <None Include="res\shaders\transtions\Cover.shader" />
     <None Include="res\shaders\transtions\Dissolve.shader" />
     <None Include="res\shaders\transtions\Flash.shader" />

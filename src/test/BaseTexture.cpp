@@ -27,7 +27,9 @@ namespace test
             "Blinds.shader",
             "Clock.shader",
             "Ripple.shader",
-            "Comb.shader"
+            "HoneyComb.shader",
+            "Glitter.shader"
+            //"Vortex.shader"
         };
         m_baseShader = std::make_unique<Shader>("res/shaders/transtions/"+ m_shaderNameList.back());
         m_quadVAO = std::make_unique<VertexArray>();
