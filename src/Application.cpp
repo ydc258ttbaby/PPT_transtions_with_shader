@@ -193,30 +193,30 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
     {
     case GLFW_MOUSE_BUTTON_LEFT:
         
-        std::cout<<"Mosue left button clicked!"<<std::endl;
+        std::cout<<"Mouse left button clicked!"<<std::endl;
         break;
     case GLFW_MOUSE_BUTTON_MIDDLE:
-        std::cout << "Mosue Middle button clicked!" << std::endl;
+        std::cout << "Mouse middle button clicked!" << std::endl;
         break;
     case GLFW_MOUSE_BUTTON_RIGHT:
         bMousePressed = true;
         bMouseReleased = false;
-        std::cout << "Mosue right button clicked!" << std::endl;
+        std::cout << "Mouse right button clicked!" << std::endl;
         break;
     }
     if (action == GLFW_RELEASE) switch (button)
     {
     case GLFW_MOUSE_BUTTON_LEFT:
         
-        std::cout << "Mosue left button released!" << std::endl;
+        std::cout << "Mouse left button released!" << std::endl;
         break;
     case GLFW_MOUSE_BUTTON_MIDDLE:
-        std::cout << "Mosue Middle button released!" << std::endl;
+        std::cout << "Mouse middle button released!" << std::endl;
         break;
     case GLFW_MOUSE_BUTTON_RIGHT:
         bMouseReleased = true;
         bMousePressed = false;
-        std::cout << "Mosue right button released!" << std::endl;
+        std::cout << "Mouse right button released!" << std::endl;
         break;
     }
     return;
