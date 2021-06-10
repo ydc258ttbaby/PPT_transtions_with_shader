@@ -33,7 +33,6 @@ vec2 transform(vec2 texcoord, float theta,vec2 hexagonNum)
     res = res / vec2(u_width, u_height);
     return res;
 }
-
 float and(float a, float b)
 {
     if(a > 0.5 && b > 0.5)      return 1.0;

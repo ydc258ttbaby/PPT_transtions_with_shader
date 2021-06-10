@@ -28,8 +28,9 @@ namespace test
             "Clock.shader",
             "Ripple.shader",
             "HoneyComb.shader",
-            "Glitter.shader"
-            //"Vortex.shader"
+            "Glitter.shader",
+			"Comb.shader",
+			"Fly.shader"
         };
         m_baseShader = std::make_unique<Shader>("res/shaders/transtions/"+ m_shaderNameList.back());
         m_quadVAO = std::make_unique<VertexArray>();
@@ -79,6 +80,7 @@ namespace test
     {
         m_SystemTime = systemTime;
         m_Time += deltaTime;
+
 
     }
 
