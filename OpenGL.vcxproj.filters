@@ -75,6 +75,19 @@
     <None Include="res\shaders\transtions\Flash.shader" />
     <None Include="res\shaders\transtions\Flip.shader" />
     <None Include="res\shaders\transtions\Ripple.shader" />
+    <None Include="res\shaders\transtions\Comb.shader" />
+    <None Include="res\shaders\transtions\Cube.shader" />
+    <None Include="res\shaders\transtions\DoorAndWindow.shader" />
+    <None Include="res\shaders\transtions\Fall.shader" />
+    <None Include="res\shaders\transtions\PageTurn.shader" />
+    <None Include="res\shaders\transtions\Glitter.shader" />
+    <None Include="res\shaders\transtions\Shred.shader" />
+    <None Include="res\shaders\transtions\Test.shader" />
+    <None Include="res\shaders\transtions\Zoom.shader" />
+    <None Include="res\shaders\transtions\PageCurl.shader" />
+    <None Include="res\shaders\transtions\Curtain.shader" />
+    <None Include="res\shaders\transtions\Prestige.shader" />
+    <None Include="res\shaders\transtions\PeelOff.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">

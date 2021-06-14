@@ -30,11 +30,17 @@ namespace test
             "HoneyComb.shader",
             "Glitter.shader",
 			"Comb.shader",
-			"Fly.shader",
+			"PageTurn.shader",
             "Zoom.shader",
             "Fall.shader",
             "Cube.shader",
-            "DoorAndWindow.shader"
+            "DoorAndWindow.shader",
+            "Shred.shader",
+            "Test.shader",
+            "PageCurl.shader",
+            "Curtain.shader",
+            "Prestige.shader",
+            "PeelOff.shader"
         };
         m_baseShader = std::make_unique<Shader>("res/shaders/transtions/"+ m_shaderNameList.back());
         m_quadVAO = std::make_unique<VertexArray>();

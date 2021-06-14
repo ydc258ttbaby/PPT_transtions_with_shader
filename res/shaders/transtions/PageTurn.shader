@@ -25,13 +25,13 @@ uniform float u_ratio;
 #define PI 3.1415926
 vec2 transform(vec2 texCoord, float theta, float zOffset)
 {
-	vec2 res = texCoord - vec2(0.5,1.5);    // 从 (0.5,0.5) 移动到 (0,0)
+	vec2 res = texCoord - vec2(0.5,1.3);    // 从 (0.5,0.5) 移动到 (0,0)
 	// 执行旋转和投影（投影本质上是剪切）
 	res.x = res.x / cos(theta);
 	res.y = res.y / (1.0 - res.x * sin(theta));
 	//res.x = res.x / (1.0 - res.x * sin(theta));
 	res = res * (1.0 + zOffset);    // 执行 z 方向的位移，经过投影后，整体视作缩放
-	res = res + vec2(0.5, 1.5);    // 从 (0,0) 移动到 (0.5,0.5)
+	res = res + vec2(0.5, 1.3);    // 从 (0,0) 移动到 (0.5,0.5)
 	return res;
 }
 void main()

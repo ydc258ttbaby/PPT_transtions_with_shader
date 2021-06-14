@@ -173,6 +173,14 @@
     <None Include="res\shaders\transtions\Blinds.shader" />
     <None Include="res\shaders\transtions\CheckBoard.shader" />
     <None Include="res\shaders\transtions\Clock.shader" />
+    <None Include="res\shaders\transtions\Comb.shader" />
+    <None Include="res\shaders\transtions\Cube.shader" />
+    <None Include="res\shaders\transtions\Curtain.shader" />
+    <None Include="res\shaders\transtions\DoorAndWindow.shader" />
+    <None Include="res\shaders\transtions\Fall.shader" />
+    <None Include="res\shaders\transtions\PageCurl.shader" />
+    <None Include="res\shaders\transtions\PageTurn.shader" />
+    <None Include="res\shaders\transtions\Glitter.shader" />
     <None Include="res\shaders\transtions\HoneyComb.shader" />
     <None Include="res\shaders\transtions\Cover.shader" />
     <None Include="res\shaders\transtions\Cut.shader" />
@@ -180,14 +188,19 @@
     <None Include="res\shaders\transtions\Fade.shader" />
     <None Include="res\shaders\transtions\Flash.shader" />
     <None Include="res\shaders\transtions\Flip.shader" />
+    <None Include="res\shaders\transtions\PeelOff.shader" />
+    <None Include="res\shaders\transtions\Prestige.shader" />
     <None Include="res\shaders\transtions\Push.shader" />
     <None Include="res\shaders\transtions\RandomBars.shader" />
     <None Include="res\shaders\transtions\Reveal.shader" />
     <None Include="res\shaders\transtions\Ripple.shader" />
     <None Include="res\shaders\transtions\Shape.shader" />
+    <None Include="res\shaders\transtions\Shred.shader" />
     <None Include="res\shaders\transtions\Split.shader" />
+    <None Include="res\shaders\transtions\Test.shader" />
     <None Include="res\shaders\transtions\Uncover.shader" />
     <None Include="res\shaders\transtions\Wipe.shader" />
+    <None Include="res\shaders\transtions\Zoom.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dependency\imgui\imconfig.h" />

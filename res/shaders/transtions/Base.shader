@@ -20,6 +20,9 @@ in vec2 texCoord;
 uniform sampler2D u_ourTexture1;
 uniform sampler2D u_ourTexture2;
 uniform float u_ratio;
+uniform float u_width;
+uniform float u_height;
+#define PI 3.1415926
 void main()
 {
 	vec4 resColor = vec4(u_ratio,0.0,0.0,1.0);
