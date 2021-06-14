@@ -171,13 +171,16 @@
   <ItemGroup>
     <None Include="res\shaders\transtions\Base.shader" />
     <None Include="res\shaders\transtions\Blinds.shader" />
+    <None Include="res\shaders\transtions\Box.shader" />
     <None Include="res\shaders\transtions\CheckBoard.shader" />
     <None Include="res\shaders\transtions\Clock.shader" />
     <None Include="res\shaders\transtions\Comb.shader" />
     <None Include="res\shaders\transtions\Cube.shader" />
     <None Include="res\shaders\transtions\Curtain.shader" />
     <None Include="res\shaders\transtions\DoorAndWindow.shader" />
+    <None Include="res\shaders\transtions\Drape.shader" />
     <None Include="res\shaders\transtions\Fall.shader" />
+    <None Include="res\shaders\transtions\Gallery.shader" />
     <None Include="res\shaders\transtions\PageCurl.shader" />
     <None Include="res\shaders\transtions\PageTurn.shader" />
     <None Include="res\shaders\transtions\Glitter.shader" />

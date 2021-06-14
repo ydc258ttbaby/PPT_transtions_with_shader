@@ -43,23 +43,18 @@ void main()
 	vec2 screenCenter = vec2(0.5);
 	vec2 thetaCenter = vec2(0.5, 0.5);
 
-	// 图片 1 从 (0.0,0.0,0.0) 移动到 (-0.5,0.0,0.5),且角度为 从 0 到 -PI/2
-	float zOffset1 = 0.5 * u_ratio;
+	float zOffset1 = (-abs(u_ratio - 1.0/3.0)+1.0/3.0)*0.5;
 	vec2 xyOffset1 = vec2(-0.5 * u_ratio,0.0);
-	float theta1 = -u_ratio * PI * 0.5;
+	float theta1 = u_ratio * PI * 0.5;
 	vec2 coord1 = transform(texCoord, xyOffset1, zOffset1, screenCenter, theta1, thetaCenter);
 	vec4 texColor1 = texture(u_ourTexture1, coord1);
 	
-	// 图片 2 从 (0.5,0.0,0.5) 移动到 (0.0,0.0,0.0),且角度为 从 PI/2 到 0
-	float zOffset2 = 0.5 * (1.0-u_ratio);
+	float zOffset2 = (-abs((1.0-u_ratio) - 1.0 / 3.0) + 1.0 / 3.0)*0.5;
 	vec2 xyOffset2 = vec2(0.5 * (1.0 - u_ratio), 0.0);
-	float theta2 = (1.0-u_ratio) * PI * 0.5;
+	float theta2 = -(1.0-u_ratio) * PI * 0.5;
 	vec2 coord2 = transform(texCoord, xyOffset2, zOffset2, screenCenter, theta2, thetaCenter);
 	vec4 texColor2 = texture(u_ourTexture2, coord2);
 
-	float R = 1.0 - u_ratio;
-	if(texCoord.x > R)
-		FragColor = texColor2;
-	else
-		FragColor = texColor1;
+	FragColor = texColor1 + texColor2;
+
 };

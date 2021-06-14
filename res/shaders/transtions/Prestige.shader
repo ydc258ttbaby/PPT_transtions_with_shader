@@ -86,13 +86,13 @@ vec3 transform(vec2 texCoord)
 		+triFun(u_ratio, t1, t2, t3) * (fx2_right)
 		+triFun(u_ratio, t2, t3, t3) * (fx3_right);
 	// 对 x 坐标进行变换
-	res.x = (res.x - deltaX_left) / (deltaX_right - deltaX_left) - 0.04 * noise * pow(u_ratio, 0.5); ;
+	res.x = (res.x - deltaX_left) / (deltaX_right - deltaX_left) - 0.04 * noise * pow(u_ratio, 0.5);
 	// 对 y 坐标的关键帧变换表达式
 	float polynomialValue = polynomialFun(res.x, -6.407, 18.57, -18.76, 7.581, -0.98, 0.017);
 	float polynomialGrandientValue = polynomialFun(res.x, 0.0, -6.407 *5.0, 18.57 *4.0, -18.76 *3.0, 7.581 *2.0, -0.98 *1.0);
 	float fy1_down = 0.0;
 	float fy2_down = 0.1 * res.x * (1.0 - res.x) + 0.2* polynomialValue - 0.05;
-	float fy3_down = 0.3 * res.x * (1.0 - res.x) + 1.0 * polynomialValue;;
+	float fy3_down = 0.3 * res.x * (1.0 - res.x) + 1.0 * polynomialValue;
 	float fy1_top = 1.0;
 	float fy2_top = 1.0 + 1.5 * res.x * (1.0 - res.x) - 0.1;
 	float fy3_top = 1.0 + 0.6 * res.x * (1.0 - res.x);

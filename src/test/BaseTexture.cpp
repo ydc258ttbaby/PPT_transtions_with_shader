@@ -40,7 +40,10 @@ namespace test
             "PageCurl.shader",
             "Curtain.shader",
             "Prestige.shader",
-            "PeelOff.shader"
+            "PeelOff.shader",
+            "Drape.shader",
+            "Box.shader",
+            "Gallery.shader"
         };
         m_baseShader = std::make_unique<Shader>("res/shaders/transtions/"+ m_shaderNameList.back());
         m_quadVAO = std::make_unique<VertexArray>();

@@ -88,6 +88,9 @@
     <None Include="res\shaders\transtions\Curtain.shader" />
     <None Include="res\shaders\transtions\Prestige.shader" />
     <None Include="res\shaders\transtions\PeelOff.shader" />
+    <None Include="res\shaders\transtions\Drape.shader" />
+    <None Include="res\shaders\transtions\Box.shader" />
+    <None Include="res\shaders\transtions\Gallery.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
