@@ -48,7 +48,7 @@ void main()
     vec4 resColor = vec4(u_ratio, 0.0, 0.0, 1.0);
     vec2 gridNum = vec2(7.0,5.0);
     vec2 axisPos = floor(texCoord * gridNum) * (1.0 / gridNum) + 0.5 / gridNum;
-    float rotateTheta = clamp(u_ratio  * (10.0 * random(axisPos) + gridNum.x * 8.0 * pow((1.0 - axisPos.x),5.0)), 0.0, 1.0) * PI;
+    float rotateTheta = clamp(axisPos.x * 2.0 - 4.0 * u_ratio + 1.0 + 2.0*(random(axisPos)-0.5) * u_ratio, 0.0, 1.0) * PI;
 
     vec2 texCoordAfterTransform = transform(texCoord, rotateTheta, axisPos, gridNum);
     vec4 texColor1 = texture(u_ourTexture1, texCoordAfterTransform);

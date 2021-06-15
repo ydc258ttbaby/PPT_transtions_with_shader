@@ -35,8 +35,6 @@ namespace test
             "Fall.shader",
             "Cube.shader",
             "DoorAndWindow.shader",
-            "Test.shader",
-            "PageCurl.shader",
             "Curtain.shader",
             "Prestige.shader",
             "PeelOff.shader",

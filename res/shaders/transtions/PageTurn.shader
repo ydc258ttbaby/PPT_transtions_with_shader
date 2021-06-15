@@ -25,12 +25,12 @@ uniform float u_ratio;
 #define PI 3.1415926
 vec2 transform(vec2 texCoord, float theta)
 {
-	vec2 res = texCoord - vec2(0.5,0.5); 
+	vec2 res = texCoord - vec2(0.5, 0.5);
 	// 执行旋转和投影（投影本质上是剪切）
 	res.x = res.x / cos(theta);
 	res.y = res.y / (1.0 - res.x * sin(theta));
 	res.x = res.x / (1.0 - res.x * sin(theta));
-	res = res + vec2(0.5, 0.5);  
+	res = res + vec2(0.5, 0.5);
 	return res;
 }
 void main()
@@ -47,7 +47,7 @@ void main()
 			if (texCoordAfterTransform.x > 1.0 || texCoordAfterTransform.x < 0.0 || texCoordAfterTransform.y < 0.0 || texCoordAfterTransform.y > 1.0)
 				FragColor = texture(u_ourTexture2, texCoord);
 			else
-				FragColor = texture(u_ourTexture1, texCoordAfterTransform)*(1.0 - u_ratio);
+				FragColor = texture(u_ourTexture1, texCoordAfterTransform) * (1.0 - u_ratio);
 		}
 	}
 	else
@@ -56,10 +56,10 @@ void main()
 			FragColor = texture(u_ourTexture2, texCoord);
 		else
 		{
-				if (texCoordAfterTransform.x > 1.0 || texCoordAfterTransform.x < 0.0 || texCoordAfterTransform.y < 0.0 || texCoordAfterTransform.y > 1.0)
-					FragColor = texture(u_ourTexture1, texCoord);
+			if (texCoordAfterTransform.x > 1.0 || texCoordAfterTransform.x < 0.0 || texCoordAfterTransform.y < 0.0 || texCoordAfterTransform.y > 1.0)
+				FragColor = texture(u_ourTexture1, texCoord);
 			else
-				FragColor = texture(u_ourTexture2, vec2(1.0 - texCoordAfterTransform.x, texCoordAfterTransform.y)) * ( u_ratio);
+				FragColor = texture(u_ourTexture2, vec2(1.0 - texCoordAfterTransform.x, texCoordAfterTransform.y)) * (u_ratio);
 		}
 
 	}
