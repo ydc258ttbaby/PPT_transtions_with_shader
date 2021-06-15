@@ -35,7 +35,6 @@ namespace test
             "Fall.shader",
             "Cube.shader",
             "DoorAndWindow.shader",
-            "Shred.shader",
             "Test.shader",
             "PageCurl.shader",
             "Curtain.shader",
@@ -43,7 +42,8 @@ namespace test
             "PeelOff.shader",
             "Drape.shader",
             "Box.shader",
-            "Gallery.shader"
+            "Gallery.shader",
+            "Shred.shader"
         };
         m_baseShader = std::make_unique<Shader>("res/shaders/transtions/"+ m_shaderNameList.back());
         m_quadVAO = std::make_unique<VertexArray>();
