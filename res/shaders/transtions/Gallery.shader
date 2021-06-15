@@ -47,43 +47,43 @@ void main()
 	vec2 thetaCenter = vec2(1.0, 0.5);
 	float t1 = 0.4;
 	float t2 = 0.7;
-	if(u_ratio < t1)
+	if (u_ratio < t1)
 	{
-		float R1 = clamp((u_ratio - 0.0)/(t1 -0.0),0.0,1.0);
+		float R1 = clamp((u_ratio - 0.0) / (t1 - 0.0), 0.0, 1.0);
 		float zOffset1 = 0.0;
 		vec2 screenCenter1 = vec2(0.5);
 		vec2 xyOffset1 = vec2(0.0, 0.0);
-		float theta1 = -R1*PI * 0.06;
+		float theta1 = -R1 * PI * 0.06;
 		vec2 coord1 = transform(texCoord, xyOffset1, zOffset1, screenCenter1, theta1, thetaCenter);
 		if (coord1.y < 0.0)
 		{
 			// 倒影的实现
-			coord1.y = -coord1.y- 0.01;
+			coord1.y = -coord1.y - 0.01;
 			intensityOffset = -coord1.y * 5.0 - 0.5;
 		}
-		texColor1 = texture(u_ourTexture1, coord1)*(1.0 + intensityOffset);
+		texColor1 = texture(u_ourTexture1, coord1) * (1.0 + intensityOffset);
 	}
-	if(u_ratio >= t1 && u_ratio < t2)
+	if (u_ratio >= t1 && u_ratio < t2)
 	{
 		float R2 = clamp((u_ratio - t1) / (t2 - t1), 0.0, 1.0);
-		float zOffset1 = 0.2* R2;
-		vec2 xyOffset1 = vec2(-0.8*R2,0.0);
-		float theta1 = - PI * 0.06;
+		float zOffset1 = 0.2 * R2;
+		vec2 xyOffset1 = vec2(-0.8 * R2, 0.0);
+		float theta1 = -PI * 0.06;
 		vec2 coord1 = transform(texCoord, xyOffset1, zOffset1, screenCenter, theta1, thetaCenter);
 		if (coord1.y < 0.0)
 		{
-			coord1.y = -coord1.y- 0.01;
+			coord1.y = -coord1.y - 0.01;
 			intensityOffset = -coord1.y * 5.0 - 0.5;
 		}
 		texColor1 = texture(u_ourTexture1, coord1) * (1.0 + intensityOffset);
 
-		float zOffset2 = -0.2 * (1.0-R2);
-		vec2 xyOffset2 = vec2(1.0 * (1.0-R2), 0.0);
+		float zOffset2 = -0.2 * (1.0 - R2);
+		vec2 xyOffset2 = vec2(1.0 * (1.0 - R2), 0.0);
 		float theta2 = -PI * 0.06;
 		vec2 coord2 = transform(texCoord, xyOffset2, zOffset2, screenCenter, theta2, thetaCenter);
 		if (coord2.y < 0.0)
 		{
-			coord2.y = -coord2.y- 0.01;
+			coord2.y = -coord2.y - 0.01;
 			intensityOffset = -coord2.y * 5.0 - 0.5;
 		}
 		texColor2 = texture(u_ourTexture2, coord2) * (1.0 + intensityOffset);
@@ -92,12 +92,12 @@ void main()
 	{
 		float R3 = clamp((u_ratio - t2) / (1.0 - t2), 0.0, 1.0);
 		float zOffset1 = 0.2 * (1.0 - R3);
-		vec2 xyOffset1 = vec2(-0.8 - 0.25*R3, 0.0);
+		vec2 xyOffset1 = vec2(-0.8 - 0.25 * R3, 0.0);
 		float theta1 = -PI * 0.06 * (1.0 - R3);
 		vec2 coord1 = transform(texCoord, xyOffset1, zOffset1, screenCenter, theta1, thetaCenter);
 		if (coord1.y < 0.0)
 		{
-			coord1.y = -coord1.y- 0.01;
+			coord1.y = -coord1.y - 0.01;
 			intensityOffset = -coord1.y * 5.0 - 0.5;
 		}
 		texColor1 = texture(u_ourTexture1, coord1) * (1.0 + intensityOffset);
@@ -108,7 +108,7 @@ void main()
 		vec2 coord2 = transform(texCoord, xyOffset2, zOffset2, screenCenter, theta2, thetaCenter);
 		if (coord2.y < 0.0)
 		{
-			coord2.y = -coord2.y- 0.01;
+			coord2.y = -coord2.y - 0.01;
 			intensityOffset = -coord2.y * 5.0 - 0.5;
 		}
 		texColor2 = texture(u_ourTexture2, coord2) * (1.0 + intensityOffset);

@@ -49,14 +49,7 @@ vec3 transform(vec2 texCoord)
 {
 	vec2 res = texCoord;
 	// 变换的思想类似于：动画的关键帧，在关键时间点定义好变换形式，然后插值
-	float t1 = 0.0;
-	float t2 = 0.5 / 6.0;
-	float t3 = 2.0 / 6.0;
-	float t4 = 3.0 / 6.0;
-	float t5 = 3.5 / 6.0;
-	float t6 = 4.5 / 6.0;
-	float t7 = 5.3 / 6.0;
-	float t8 = 1.0;
+	float t1 = 0.0, t2 = 0.5 / 6.0, t3 = 2.0 / 6.0, t4 = 3.0 / 6.0, t5 = 3.5 / 6.0, t6 = 4.5 / 6.0, t7 = 5.3 / 6.0, t8 = 1.0;
 	// 对 x 坐标的关键帧变换表达式
 	float fx1 = 0.0;
 	float fx2 = 0.5 * pow(res.y, 2.0);
@@ -67,8 +60,8 @@ vec3 transform(vec2 texCoord)
 	float fx7 = 1.0 - 0.75 * pow(1.0 - res.y, 2.0);
 	float fx8 = 1.0;
 	// 对x的关键帧进行插值，使用 tent 函数
-	float deltaX = 
-		 triFun(u_ratio, t1, t1, t2) * (fx1)
+	float deltaX =
+		triFun(u_ratio, t1, t1, t2) * (fx1)
 		+triFun(u_ratio, t1, t2, t3) * (fx2)
 		+triFun(u_ratio, t2, t3, t4) * (fx3)
 		+triFun(u_ratio, t3, t4, t5) * (fx4)
@@ -89,8 +82,8 @@ vec3 transform(vec2 texCoord)
 	float fy7 = 0.3 * pow(1.0 - (res.x), 2.0);
 	float fy8 = 0.0;
 	// 对 y 的关键帧进行插值，使用 tent 函数
-	float deltaY = 
-	     triFun(u_ratio, t1, t1, t2) * (fy1)
+	float deltaY =
+		triFun(u_ratio, t1, t1, t2) * (fy1)
 		+triFun(u_ratio, t1, t2, t3) * (fy2)
 		+triFun(u_ratio, t2, t3, t4) * (fy3)
 		+triFun(u_ratio, t3, t4, t5) * (fy4)
@@ -117,9 +110,9 @@ void main()
 	// 对右半部分：从 0.5 -> 1.0 映射到 0.0 -> 1.0，经过 transform 后再映射回来
 	if (texCoord.x > 0.5)
 	{
-		vec2 coord = vec2(texCoord.x * 2.0 - 1.0,texCoord.y);
+		vec2 coord = vec2(texCoord.x * 2.0 - 1.0, texCoord.y);
 		vec3 res = transform(coord);
-		resColor = texture(u_ourTexture1, vec2(res.x*0.5 + 0.5,res.y));
+		resColor = texture(u_ourTexture1, vec2(res.x * 0.5 + 0.5, res.y));
 		resColor = resColor * (1.0 + res.z);
 		// 对于上一张图超出 0-1 范围的地方，显示下一张图
 		if (res.x < 0.0 || res.x > 1.0 || res.y < 0.0 || res.y > 1.0)
@@ -128,7 +121,7 @@ void main()
 	// 对左半部分：从 0.0 -> 0.5 映射到 1.0 -> 0.0，经过 transform 后再映射回来
 	if (texCoord.x <= 0.5)
 	{
-		vec2 coord = vec2(1.0-texCoord.x * 2.0, texCoord.y);
+		vec2 coord = vec2(1.0 - texCoord.x * 2.0, texCoord.y);
 		vec3 res = transform(coord);
 		resColor = texture(u_ourTexture1, vec2(0.5 - res.x * 0.5, res.y));
 
@@ -137,7 +130,4 @@ void main()
 			resColor = texColor2;
 	}
 	FragColor = resColor;
-	//float noise = tetraNoise(vec3(texCoord*vec2(5.0,0.1), u_ratio*2.0));
-	//float noise = tetraNoise(vec3(texCoord * vec2(10.0, 0.1), u_ratio * 4.0));
-	//FragColor = vec4(noise,0.0,0.0,1.0);
 };

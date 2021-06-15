@@ -28,7 +28,7 @@ vec2 transform(vec2 texCoord, vec2 xyOffset, float zOffset, vec2 scaleCenter, fl
 	// ÈÆ x ÖáÐý×ª
 	res = res - xThetaCenter;
 	res.y = res.y / cos(xTheta);
-	res.y = res.y / (1.0 - projectPar*res.y * sin(xTheta));
+	res.y = res.y / (1.0 - projectPar * res.y * sin(xTheta));
 	res.x = res.x / (1.0 - projectPar * res.y * sin(xTheta));
 	res = res + xThetaCenter;
 	// ÈÆ y ÖáÐý×ª
@@ -71,6 +71,15 @@ float generateFrag(vec2 texCoord)
 		v = 0.0;
 	return v;
 }
+vec4 textureSelect(vec2 coord)
+{
+	vec4 resColor = vec4(0.0);
+	if (u_ratio < 0.5)
+		resColor = texture(u_ourTexture1, coord);
+	else
+		resColor = texture(u_ourTexture2, coord);
+	return resColor;
+}
 void main()
 {
 	vec2 scaleCenter = vec2(0.5);
@@ -93,52 +102,39 @@ void main()
 
 	if (u_ratio < t1 || u_ratio >= t2)
 	{
-		float R1 = (-abs(u_ratio - 0.5)+0.5)/t1;
+		float R1 = (-abs(u_ratio - 0.5) + 0.5) / t1;
 		xTheta = -PI * 0.05 * R1;
 		yTheta = PI * 0.1 * R1;
 		{
-			zOffset = (0.4 )*R1;
-			res1 = transform(texCoord,xyOffset,zOffset,scaleCenter,xTheta,xThetaCenter, yTheta,yThetaCenter,zTheta,zThetaCenter);
+			zOffset = (0.4) * R1;
+			res1 = transform(texCoord, xyOffset, zOffset, scaleCenter, xTheta, xThetaCenter, yTheta, yThetaCenter, zTheta, zThetaCenter);
 			float mask = generateFrag(res1);
-			if (u_ratio < 0.5)
-				resColor1 = texture(u_ourTexture1, res1) * mask;
-			else
-				resColor1 = texture(u_ourTexture2, res1) * mask;
+			resColor1 = textureSelect(res1) * mask;
 		}
 		{
 			zOffset = (0.6) * R1;
 			res2 = transform(texCoord, xyOffset, zOffset, scaleCenter, xTheta, xThetaCenter, yTheta, yThetaCenter, zTheta, zThetaCenter);
 			float mask = 1.0 - generateFrag(res2);
-			if (u_ratio < 0.5)
-				resColor2 = texture(u_ourTexture1, res2) * mask;
-			else
-				resColor2 = texture(u_ourTexture2, res2) * mask;
-
+			resColor2 = textureSelect(res2) * mask;
 		}
 		FragColor = mix(resColor2, resColor1, resColor1.a);
 	}
 	if (u_ratio >= t1 && u_ratio < t2)
 	{
-		float R2 = 1.0 - abs((u_ratio-t1)/(t2-t1)*2.0 - 1.0);
+		float R2 = 1.0 - abs((u_ratio - t1) / (t2 - t1) * 2.0 - 1.0);
 		{
 			zOffset = 0.4 - 1.5 * R2;
 			xyOffset = vec2(0.7, 0.2) * R2;
 			res1 = transform(texCoord, xyOffset, zOffset, scaleCenter, xTheta, xThetaCenter, yTheta, yThetaCenter, zTheta, zThetaCenter);
 			float mask = generateFrag(res1);
-			if (u_ratio < 0.5)
-				resColor1 = texture(u_ourTexture1, res1) * mask;
-			else
-				resColor1 = texture(u_ourTexture2, res1) * mask;
+			resColor1 = textureSelect(res1) * mask;
 		}
 		{
 			zOffset = 0.6 + 5.0 * R2;
 			xyOffset = vec2(-1.5, -0.2) * R2;
 			res2 = transform(texCoord, xyOffset, zOffset, scaleCenter, xTheta, xThetaCenter, yTheta, yThetaCenter, zTheta, zThetaCenter);
-			float mask = 1.0- generateFrag(res2);
-			if (u_ratio < 0.5)
-				resColor2 = texture(u_ourTexture1, res2) * mask;
-			else
-				resColor2 = texture(u_ourTexture2, res2) * mask;
+			float mask = 1.0 - generateFrag(res2);
+			resColor2 = textureSelect(res2) * mask;
 		}
 		FragColor = mix(resColor2, resColor1, resColor1.a);
 	}

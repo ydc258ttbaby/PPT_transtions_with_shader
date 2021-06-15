@@ -35,15 +35,10 @@ float triFun(float x, float l, float c, float r)
 float random(vec2 st) {
 	return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.5453123);
 }
-
 vec3 transform(vec2 texCoord)
 {
 	vec2 res = texCoord;
-	float t1 = 0.5;
-	float t2 = 0.6;
-	float t3 = 0.7;
-	float t4 = 1.0;
-
+	float t1 = 0.5,t2 = 0.6,t3 = 0.7,t4 = 1.0;
 	// 变换的思想类似于：动画的关键帧，在关键时间点定义好变换形式，然后插值
 	// 对 x 坐标的关键帧变换表达式
 	float fx1_left = 0.0;
@@ -102,7 +97,6 @@ void main()
 		// 转到画布真实的像素坐标系进行变换
 		vec2 coord = texCoord;
 		coord.y = 2.0*R - coord.y;
-
 		// 添加光影变化
 		float intensityOffset = -0.5+2.0*(texCoord.y - R) ;
 		// 揭开的背面的部分

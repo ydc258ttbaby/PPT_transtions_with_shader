@@ -27,12 +27,9 @@ void main()
 	float delay = floor(texCoord.y * halfCombNum * 2.0) / halfCombNum * 0.25; // 0-0.5
 	float Ry = floor(fract(texCoord.y * halfCombNum) * 2.0);// 0-1-0-1-0-1
 	float ratio = clamp(u_ratio * 2.0 - delay * 2.0, 0.0, 1.0);
-
 	if (1.0 - Ry - ratio + (2.0 * Ry - 1.0) * texCoord.x > 0.0)
 		resColor = texture(u_ourTexture1, vec2(texCoord.x + (1.0 - 2.0 * Ry) * ratio, texCoord.y));
 	else
 		resColor = texture(u_ourTexture2, vec2(texCoord.x, texCoord.y));
-
 	FragColor = resColor;
-	//FragColor = vec4(delay,0.0,0.0,1.0);
 };

@@ -25,7 +25,7 @@ uniform float u_ratio;
 float triFun(float x, float l, float c, float r)
 {
 	if (l == c) l = c - 0.0001;
-	if(r == c) r = c + 0.0001;
+	if (r == c) r = c + 0.0001;
 	float y1 = (x - l) / (c - l);
 	float y2 = (x - r) / (c - r);
 	return min(clamp(y1, 0.0, 1.0), clamp(y2, 0.0, 1.0));
@@ -62,7 +62,7 @@ vec3 transform(vec2 texCoord)
 	float t1 = 0.0;
 	float t2 = 0.35;
 	float t3 = 1.0;
-	res.y = res.y - clamp((u_ratio-t2)/(t3-t2),0.0,1.0) - u_ratio*0.1;
+	res.y = res.y - clamp((u_ratio - t2) / (t3 - t2), 0.0, 1.0) - u_ratio * 0.1;
 	// 加一个噪声函数，使之更有灵性
 	float noise = tetraNoise(vec3(texCoord, u_ratio * 3.0));
 
@@ -70,63 +70,55 @@ vec3 transform(vec2 texCoord)
 	// 对 x 坐标的关键帧变换表达式
 	float fx1_left = 0.0;
 	float fx2_left = 0.03 * pow(1.0 - res.y, 2.0);
-	float fx3_left = 0.1+ 0.25 * pow(1.0 - res.y,2.0);
+	float fx3_left = 0.1 + 0.25 * pow(1.0 - res.y, 2.0);
 	float fx1_right = 1.0;
 	float fx2_right = 1.0 - 0.03 * (1.0 - res.y);
-	float fx3_right = 0.9 - 0.3 * (1.0-res.y);
+	float fx3_right = 0.9 - 0.3 * (1.0 - res.y);
 	// 对x的关键帧进行插值，使用 tent 函数
 	float deltaX_left = 0.0;
-	deltaX_left = 
-		 triFun(u_ratio, t1, t1, t2) * (fx1_left)
+	deltaX_left =
+		triFun(u_ratio, t1, t1, t2) * (fx1_left)
 		+triFun(u_ratio, t1, t2, t3) * (fx2_left)
 		+triFun(u_ratio, t2, t3, t3) * (fx3_left);
 	float deltaX_right = 1.0;
 	deltaX_right =
-		 triFun(u_ratio, t1, t1, t2) * (fx1_right)
+		triFun(u_ratio, t1, t1, t2) * (fx1_right)
 		+triFun(u_ratio, t1, t2, t3) * (fx2_right)
 		+triFun(u_ratio, t2, t3, t3) * (fx3_right);
 	// 对 x 坐标进行变换
 	res.x = (res.x - deltaX_left) / (deltaX_right - deltaX_left) - 0.04 * noise * pow(u_ratio, 0.5);
 	// 对 y 坐标的关键帧变换表达式
 	float polynomialValue = polynomialFun(res.x, -6.407, 18.57, -18.76, 7.581, -0.98, 0.017);
-	float polynomialGrandientValue = polynomialFun(res.x, 0.0, -6.407 *5.0, 18.57 *4.0, -18.76 *3.0, 7.581 *2.0, -0.98 *1.0);
+	float polynomialGrandientValue = polynomialFun(res.x, 0.0, -6.407 * 5.0, 18.57 * 4.0, -18.76 * 3.0, 7.581 * 2.0, -0.98 * 1.0);
 	float fy1_down = 0.0;
-	float fy2_down = 0.1 * res.x * (1.0 - res.x) + 0.2* polynomialValue - 0.05;
+	float fy2_down = 0.1 * res.x * (1.0 - res.x) + 0.2 * polynomialValue - 0.05;
 	float fy3_down = 0.3 * res.x * (1.0 - res.x) + 1.0 * polynomialValue;
 	float fy1_top = 1.0;
 	float fy2_top = 1.0 + 1.5 * res.x * (1.0 - res.x) - 0.1;
 	float fy3_top = 1.0 + 0.6 * res.x * (1.0 - res.x);
 	// 对y的关键帧进行插值，使用 tent 函数
-	float deltaY_down = 
-	     triFun(u_ratio, t1, t1, t2) * (fy1_down)
+	float deltaY_down =
+		triFun(u_ratio, t1, t1, t2) * (fy1_down)
 		+triFun(u_ratio, t1, t2, t3) * (fy2_down)
 		+triFun(u_ratio, t2, t3, t3) * (fy3_down);
 	float deltaY_top =
-		 triFun(u_ratio, t1, t1, t2) * (fy1_top)
+		triFun(u_ratio, t1, t1, t2) * (fy1_top)
 		+triFun(u_ratio, t1, t2, t3) * (fy2_top)
 		+triFun(u_ratio, t2, t3, t3) * (fy3_top);
 	// 对 y 坐标进行变换
-	res.y = (res.y - deltaY_down) / (deltaY_top - deltaY_down) ;
-	res.y = res.y - 0.3*noise* pow(u_ratio,0.5);
+	res.y = (res.y - deltaY_down) / (deltaY_top - deltaY_down);
+	res.y = res.y - 0.3 * noise * pow(u_ratio, 0.5);
 	// 光影变化，和变换后的坐标一同返回
-	float intensityOffset = 1.5 * polynomialGrandientValue * pow((deltaX_left + 1.0 - deltaX_right),0.5);
+	float intensityOffset = 1.5 * polynomialGrandientValue * pow((deltaX_left + 1.0 - deltaX_right), 0.5);
 	return vec3(res, intensityOffset);
 }
-
-
 void main()
 {
-	vec4 resColor = vec4(1.0, 0.0, 0.0, 1.0);
 	vec4 texColor2 = texture(u_ourTexture2, texCoord);
-
-	vec3 res = vec3(texCoord,0.0);
-	res = transform(texCoord);
-	resColor = texture(u_ourTexture1, res.xy);
-
+	vec3 res = transform(texCoord);// transform 返回变换后的 纹理坐标 和 光影调节值
+	vec4 resColor = texture(u_ourTexture1, res.xy);
 	resColor = resColor * (1.0 + res.z);
 	if (res.x < 0.0 || res.x > 1.0 || res.y < 0.0 || res.y > 1.0)
 		resColor = texColor2;
 	FragColor = resColor;
-	//float noise = tetraNoise(vec3(texCoord*2.0, u_ratio*2.0));
-	//FragColor = vec4(noise,0.0,0.0,1.0);
 };
